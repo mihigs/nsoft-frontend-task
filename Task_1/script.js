@@ -1,38 +1,48 @@
-let matrix; //The main matrix
+// Global variables
+let matrix = initiateMatrix();
+let userInput;
 
-// DOM and user input variables
-let userInput = parseInt(prompt('Input a number between 1 and 100: '));
-let result = document.getElementById('result');
-let number = document.getElementById('number');
-number.innerText += userInput;
-result.innerText += getNeighborSum(userInput);
+do{ //Input validatition
+    userInput = parseInt(prompt('Input a number between 1 and 100: '));
+}while(userInput < 1 || userInput > 100 || isNaN(userInput));
+
+let result = getNeighborSum(userInput);
+
+//DOM elements
+const resultElement = document.getElementById('result');
+const userInputElement = document.getElementById('number');
+
+//DOM manipulation
+userInputElement.innerText = `Number: ${userInput}`;
+resultElement.innerText = `Result: ${result}`;
 
 // Initializes the matrix
-function populateMatrix(){ 
+function initiateMatrix(){ 
     let element = 1;
     let matrixSize = 10;
-    //Populates the matrix
-    matrix = new Array(matrixSize)
+
+    return new Array(matrixSize) //Populates the matrix
         .fill(0)
-        .map(elem => (new Array(matrixSize)
+        .map(() => (new Array(matrixSize)
         .fill(0)
-        .map(elem => element++)));
+        .map(() => element++)));
 }
 
 // The main function, calculates the sum of selected elements' neigbours
 function getNeighborSum(num){
-    if(num < 1 || num > 100) return -1; // Edge case, if the user inputs an invalid number
+    if(num < 1 || num > 100) return; // Edge case, if the user inputs an invalid number
 
     let x = parseInt((num-1) / 10); // Calculates "i" index
     let y = (num-1) % 10; // Calculates "j" index
     let result = 0; // Initiates result
 
-    let startX = x - 1 >= 0 ? x - 1 : x;
-    let startY = y - 1 >= 0 ? y - 1 : y;
-    let endX = startX + (x + 1 > 9 || x - 1 < 0 ? 1 : 2);
-    let endY = startY + (y + 1 > 9 || y - 1 < 0 ? 1 : 2);
+    //Defines the boundaries of the new matrix
+    let startX = x - 1 >= 0 ? x - 1 : x; //top edge
+    let startY = y - 1 >= 0 ? y - 1 : y; //left edge
+    let endX = startX + (x + 1 > 9 || x - 1 < 0 ? 1 : 2); //bottom edge
+    let endY = startY + (y + 1 > 9 || y - 1 < 0 ? 1 : 2); //right edge
 
-
+    //Sums up the elements of the new matrix
     for(let i = startX; i <= endX; i++){
         for(let j = startY; j <= endY; j++){
             result += matrix[i][j];
@@ -44,15 +54,23 @@ function getNeighborSum(num){
 }
 
 // Creates a table for visual respresentation
-function drawTable(x, y){
-    const table = document.getElementsByTagName('table')[0];
+function drawTable(x, y){ //Two arguments representing the selected numbers' position
+    const table = document.getElementsByTagName('table')[0]; //DOM table
 
-    matrix.forEach((arrX) => {
+    matrix.forEach((arrX, i) => {
         let tableRow = table.appendChild(document.createElement('tr'));
-        arrX.forEach((elem) => {
-            let tempValue = document.createElement('td');
-            tempValue.innerText = elem;
-            tableRow.appendChild(tempValue);
+
+        arrX.forEach((elem, j) => {
+            let currentElement = document.createElement('td');
+            currentElement.innerText = elem;
+
+            //Colors the selected element with red, and his neighbors with green
+            if(Math.abs(x - i) <= 1 && Math.abs(y - j) <= 1) 
+                currentElement.style.backgroundColor = 'lightgreen';
+            if(x === i && y === j) 
+                currentElement.style.backgroundColor = 'red';
+
+            tableRow.appendChild(currentElement);
         })
     })
 }
