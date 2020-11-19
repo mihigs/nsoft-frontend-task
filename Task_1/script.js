@@ -74,6 +74,3 @@ function drawTable(x, y){ //Two arguments representing the selected numbers' pos
         })
     })
 }
-
-
-

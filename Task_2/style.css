@@ -1,0 +1,149 @@
+*{
+    overflow: hidden;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.main-container{
+    width: 500px;
+    height: 500px;
+    margin: auto;
+}
+/* Dashed line container */
+.dashed-line{
+    display: inline-block;
+    position: relative;
+    top: 165px;
+    left: -27.5px;
+
+    animation: counterClockwise 8s linear infinite;
+}
+    /* Blue semi circle */
+    .dashed-line-blue{
+        width: 200px; 
+        height: 100px; 
+        border-radius: 150px 150px 0 0;
+        border: 2px dashed navy;
+        border-bottom: 0;
+    }
+    /* Orange semi circle */
+    .dashed-line-orange{
+        width: 200px;
+        height: 100px; 
+        border-radius: 0 0 150px 150px;
+        border: 2px dashed orangered;
+        border-top: 0;
+    }
+
+/* Gray circle */
+.circle{
+    position: relative;
+    top: 150px;
+    left: 165px;
+    z-index: 1;
+    
+    height: 165px;
+    width: 165px;
+    background-color: lightgray;
+    border-radius: 50%;
+    cursor: pointer;
+
+    appearance: none;
+    outline: none;
+}
+    /* When the circle is toggled, apply this animation to .dashed-line */
+    .circle:checked + .dashed-line{
+        animation: clockwise 8s linear infinite;
+    }
+    /* "Click me" text */
+    .text{
+        position: relative;
+        top: 35px;
+        left: 218px;
+        z-index: 2;
+        color: gray;
+        pointer-events: none;
+    }
+
+/* Animation keyframes for clockwise and counter clockwise rotations */
+@keyframes counterClockwise {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(-360deg);
+    }
+}
+@keyframes clockwise {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+
+/* 
+.main-element{
+    -webkit-animation: clockwise 8s linear infinite;
+}
+
+.circle{
+    position: relative;
+    top: 332px;
+
+    appearance: none;
+    outline: none;
+    
+    height: 165px;
+    width: 165px;
+    background-color: gray;
+    border-radius: 50%;
+}
+    .circle-text{
+        display: inline;
+        color: darkslategray;
+        text-align: center;
+        line-height: 160px;
+    }
+
+.dashed-circle-container{
+    position: relative;
+    top: 10px;
+}
+    .circle:checked{
+        background-color: red;
+        -webkit-animation: counterClockwise 8s linear infinite;
+    }
+    .dashed-circle-blue{
+        margin: auto;
+        border: 2px dashed navy;
+        height: 100px; 
+        width: 200px; 
+        border-radius: 150px 150px 0 0;
+        border-bottom: 0;    
+    }
+    .dashed-circle-orange{
+        margin: auto;
+        border: 2px dashed orange;
+        height: 100px; 
+        width: 200px; 
+        border-radius: 0 0 150px 150px;
+        border-top: 0;
+    }
+
+@-webkit-keyframes counterClockwise {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(-360deg);
+    }
+}
+@-webkit-keyframes clockwise {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
+} */
