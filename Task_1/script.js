@@ -28,24 +28,20 @@ function initiateMatrix(){
         .map(() => element++)));
 }
 
-// The main function, calculates the sum of selected elements' neigbours
+// The sum function
 function getNeighborSum(num){
-    if(num < 1 || num > 100) return; // Edge case, if the user inputs an invalid number
+    if(num < 1 || num > 100) return; // Validation, if the user inputs an invalid number
 
+    //Declare variables
     let x = parseInt((num-1) / 10); // Calculates "i" index
     let y = (num-1) % 10; // Calculates "j" index
     let result = 0; // Initiates result
 
-    //Defines the boundaries of the new matrix
-    let startX = x - 1 >= 0 ? x - 1 : x; //top edge
-    let startY = y - 1 >= 0 ? y - 1 : y; //left edge
-    let endX = startX + (x + 1 > 9 || x - 1 < 0 ? 1 : 2); //bottom edge
-    let endY = startY + (y + 1 > 9 || y - 1 < 0 ? 1 : 2); //right edge
-
-    //Sums up the elements of the new matrix
-    for(let i = startX; i <= endX; i++){
-        for(let j = startY; j <= endY; j++){
-            result += matrix[i][j];
+    //Sum up the elements
+    for(let i = x - 1; i <= x + 1; i++){ // From (i - 1) to (i + 1)
+        for(let j = y - 1; j <= y + 1; j++){ // From (j - 1) to (j + 1)
+            if((i >= 0 && i < 10)&&(j >= 0 && j < 10)) // Excludes elements outside of the matrix
+                result += matrix[i][j]; // Adds valid value to the result
         }
     }
 
