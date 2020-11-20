@@ -9,15 +9,22 @@
 <body>
     <div class="main-container">
         
-        <!-- The circle is a styled checkbox. When checked, it will switch the rotation -->
-        <input class="circle" type="checkbox">
-        
-        <div class="dashed-line">
-            <div class="dashed-line-blue"></div>
-            <div class="dashed-line-orange"></div>
+        <div class="rotator">
+            <!-- The "click me" button is a checkbox. When checked, it will switch the rotation -->
+            <input class="circle-checkbox" type="checkbox">
+            
+            <!-- Dashed line around the circle -->
+            <div class="dashed-line">
+                <div class="dashed-line-blue"></div>
+                <div class="dashed-line-orange"></div>
+            </div>
+    
+            <!-- .circle and .circle-checbox are separate elements because some browsers don't allow checkbox styling -->
+            <div class="circle"></div>
+            
+            <p class="text">Click me</p>
         </div>
-        
-        <p class="text">Click me</p>
+
     </div>
 </body>
 </html>

@@ -3,17 +3,26 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .main-container{
-    width: 500px;
-    height: 500px;
+    display: grid;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Rotator component */
+.rotator{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    height: 205px;
+    width: 205px;
     margin: auto;
 }
 /* Dashed line container */
 .dashed-line{
     display: inline-block;
-    position: relative;
-    top: 165px;
-    left: -27.5px;
-
+    grid-column-start: 1;
+    grid-row-start: 1;
     animation: counterClockwise 8s linear infinite;
 }
     /* Blue semi circle */
@@ -35,47 +44,47 @@
 
 /* Gray circle */
 .circle{
-    position: relative;
-    top: 150px;
-    left: 165px;
-    z-index: 1;
+    grid-column-start: 1;
+    grid-row-start: 1;
     
     height: 165px;
     width: 165px;
     background-color: lightgray;
     border-radius: 50%;
-    cursor: pointer;
-
-    appearance: none;
-    outline: none;
 }
-    /* When the circle is toggled, apply this animation to .dashed-line */
-    .circle:checked + .dashed-line{
+    .circle-checkbox{
+        grid-column-start: 1;
+        grid-row-start: 1;
+        position: relative;
+        z-index: 1;
+        
+        height: 165px;
+        width: 165px;
+        border-radius: 50%;
+        cursor: pointer;
+
+        opacity: 0;
+        appearance: none;
+    }
+    /* When the .circle-checkbox is toggled, apply this animation to .dashed-line */
+    .circle-checkbox:checked + .dashed-line{
         animation: clockwise 8s linear infinite;
     }
     /* "Click me" text */
     .text{
-        position: relative;
-        top: 35px;
-        left: 218px;
-        z-index: 2;
+        grid-column-start: 1;
+        grid-row-start: 1;
+
         color: gray;
         pointer-events: none;
     }
-
 /* Animation keyframes for clockwise and counter clockwise rotations */
 @keyframes counterClockwise {
-    from{
-        transform: rotate(0deg);
-    }
     to{
         transform: rotate(-360deg);
     }
 }
 @keyframes clockwise {
-    from{
-        transform: rotate(0deg);
-    }
     to{
         transform: rotate(360deg);
     }

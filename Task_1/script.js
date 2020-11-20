@@ -28,7 +28,7 @@ function initiateMatrix(){
         .map(() => element++)));
 }
 
-// The sum function
+//The sum function
 function getNeighborSum(num){
     if(num < 1 || num > 100) return; // Validation, if the user inputs an invalid number
 
@@ -45,9 +45,11 @@ function getNeighborSum(num){
         }
     }
 
+
     drawTable(x, y);
     return result;
 }
+
 
 // Creates a table for visual respresentation
 function drawTable(x, y){ //Two arguments representing the selected numbers' position
